@@ -274,8 +274,11 @@ class RequestLogs extends PageComponent {
       result[current] = ''
       return result
     }, {})
+
     this.setState({
       loadingLogs: true,
+      currentUuid: '',
+      error: '',
       filters
     }, function () {
       this.load(this.state.filters)
