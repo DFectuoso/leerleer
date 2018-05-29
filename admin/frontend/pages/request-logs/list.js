@@ -269,6 +269,19 @@ class RequestLogs extends PageComponent {
     this.load(this.state.filters)
   }
 
+  clear () {
+    let filters = Object.keys(this.state.filters).reduce((result, current) => {
+      result[current] = ''
+      return result
+    }, {})
+    this.setState({
+      loadingLogs: true,
+      filters
+    }, function () {
+      this.load(this.state.filters)
+    })
+  }
+
   handleSelectChange (type, e) {
     this.setState({
       loadingLogs: true
@@ -340,6 +353,18 @@ class RequestLogs extends PageComponent {
                   </div>
                 </div>
               </div>
+              <div className='column is-narrow'>
+                <div className='field has-addons is-padding-bottom-small'>
+                  <div className='control'>
+                    <a className='button is-white' onClick={() => this.clear()}>
+                      <span className='icon'>
+                        <i className='fa fa-eraser' />
+                      </span>
+                      <span>Clear</span>
+                    </a>
+                  </div>
+                </div>
+              </div>
             </div>
             <div className='header columns'>
               <div className='column is-narrow'>
@@ -355,7 +380,7 @@ class RequestLogs extends PageComponent {
               <div className='column is-narrow'>
                 <p className='subtitle is-marginless'>Type</p>
                 <div className='select'>
-                  <select onChange={e => this.handleSelectChange('type', e)}>
+                  <select onChange={e => this.handleSelectChange('type', e)} value={this.state.filters.type}>
                     <option />
                     <option value='inbound'>Inbound</option>
                     <option value='outbound'>Oubound</option>
@@ -366,7 +391,7 @@ class RequestLogs extends PageComponent {
               <div className='column is-narrow'>
                 <p className='subtitle is-marginless'>Path</p>
                 <div className='select'>
-                  <select onChange={e => this.handleSelectChange('pathname', e)}>
+                  <select onChange={e => this.handleSelectChange('pathname', e)} value={this.state.filters.pathname}>
                     <option key='empty' />
                     {pathnames.map((pathname, key) => <option key={key} value={pathname}>{pathname}</option>)}
                   </select>
