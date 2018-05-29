@@ -150,12 +150,7 @@ class RequestLogs extends PageComponent {
       loaded: false,
       loadingLogs: false,
       logsPerPage: 20,
-      filters: {
-        status: '',
-        pathname: '',
-        uuid: '',
-        type: ''
-      },
+      filters: {},
       metadata: {
         pathnames: [],
         methods: []
@@ -167,7 +162,9 @@ class RequestLogs extends PageComponent {
 
   async onFirstPageEnter () {
     const metadata = await api.get('/admin/request-logs/metadata')
+    const filters = this.getDefaultFilterValues()
 
+    this.setState({ filters })
     return {metadata}
   }
 
@@ -266,6 +263,15 @@ class RequestLogs extends PageComponent {
     }
   }
 
+  getDefaultFilterValues () {
+    return {
+      status: '',
+      pathname: '',
+      uuid: '',
+      type: ''
+    }
+  }
+
   reload () {
     this.setState({
       loadingLogs: true
@@ -275,18 +281,13 @@ class RequestLogs extends PageComponent {
   }
 
   clear () {
-    let filters = {
-      status: '',
-      pathname: '',
-      uuid: '',
-      type: ''
-    }
+    const filters = this.getDefaultFilterValues()
 
     this.setState({
       currentUuid: '',
       error: '',
       filters
-    }, function () {
+    }, () => {
       this.reload()
     })
   }
