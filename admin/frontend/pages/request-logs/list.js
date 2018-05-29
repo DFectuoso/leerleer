@@ -150,7 +150,12 @@ class RequestLogs extends PageComponent {
       loaded: false,
       loadingLogs: false,
       logsPerPage: 20,
-      filters: {},
+      filters: {
+        status: '',
+        pathname: '',
+        uuid: '',
+        type: ''
+      },
       metadata: {
         pathnames: [],
         methods: []
@@ -270,18 +275,19 @@ class RequestLogs extends PageComponent {
   }
 
   clear () {
-    let filters = Object.keys(this.state.filters).reduce((result, current) => {
-      result[current] = ''
-      return result
-    }, {})
+    let filters = {
+      status: '',
+      pathname: '',
+      uuid: '',
+      type: ''
+    }
 
     this.setState({
-      loadingLogs: true,
       currentUuid: '',
       error: '',
       filters
     }, function () {
-      this.load(this.state.filters)
+      this.reload()
     })
   }
 
@@ -320,6 +326,10 @@ class RequestLogs extends PageComponent {
     })
   }
 
+  isActiveBtn (value) {
+    return 'control ' + ((value === this.state.filters.status) ? 'is-active is-active-btn' : '')
+  }
+
   render () {
     const { loaded, metadata, logs, error } = this.state
     const { pathnames } = metadata
@@ -332,6 +342,10 @@ class RequestLogs extends PageComponent {
     const more = (logs.total / logs.data.length) > 1
     const classNameLoadLink = classNames('button is-white is-small', {
       'is-loading': this.state.loadingLogs
+    })
+
+    const classNameStatusBtn = classNames('button', {
+      'is-transparent': this.state.filters.status
     })
 
     let errorElement
@@ -373,10 +387,26 @@ class RequestLogs extends PageComponent {
               <div className='column is-narrow'>
                 <p className='subtitle is-marginless'>Status codes</p>
                 <div className='field has-addons is-padding-bottom-small'>
-                  <div className='control'><a className='button is-white' onClick={() => this.setStatusFilter('')}>ALL</a></div>
-                  <div className='control'><a className='button is-success' onClick={() => this.setStatusFilter('success')}>200</a></div>
-                  <div className='control'><a className='button is-warning' onClick={() => this.setStatusFilter('warning')}>400</a></div>
-                  <div className='control'><a className='button is-danger' onClick={() => this.setStatusFilter('error')}>500</a></div>
+                  <div className={this.isActiveBtn('')}>
+                    <a
+                      className={classNameStatusBtn + ' is-white '}
+                      onClick={() => this.setStatusFilter('')}>ALL</a>
+                  </div>
+                  <div className={this.isActiveBtn('success')}>
+                    <a
+                      className={classNameStatusBtn + ' is-success '}
+                      onClick={() => this.setStatusFilter('success')}>200</a>
+                  </div>
+                  <div className={this.isActiveBtn('warning')}>
+                    <a
+                      className={classNameStatusBtn + ' is-warning '}
+                      onClick={() => this.setStatusFilter('warning')}>400</a>
+                  </div>
+                  <div className={this.isActiveBtn('error')}>
+                    <a
+                      className={classNameStatusBtn + ' is-danger '}
+                      onClick={() => this.setStatusFilter('error')}>500</a>
+                  </div>
                 </div>
               </div>
 
