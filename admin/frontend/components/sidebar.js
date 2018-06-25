@@ -11,7 +11,7 @@ import Roles from '../pages/roles/list'
 import Groups from '../pages/groups/list'
 
 import RequestLogs from '../pages/request-logs/list'
-import Reports from '../pages/reports/users'
+import AppConfig from '../pages/developer-tools/app-config'
 
 class Sidebar extends Component {
   constructor (props) {
@@ -70,15 +70,8 @@ class Sidebar extends Component {
         to: '/devtools',
         open: false,
         dropdown: [
-          RequestLogs.asSidebarItem()
-        ]
-      }, {
-        title: 'Reports',
-        icon: 'github-alt',
-        to: '/reports',
-        open: false,
-        dropdown: [
-          Reports.asSidebarItem()
+          RequestLogs.asSidebarItem(),
+          AppConfig.asSidebarItem()
         ]
       }
     ]
