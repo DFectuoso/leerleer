@@ -10,6 +10,7 @@ import Organizations from '../pages/organizations/list'
 import Roles from '../pages/roles/list'
 import Groups from '../pages/groups/list'
 
+import FormBuilder from '../pages/devtools/form-builder'
 import RequestLogs from '../pages/request-logs/list'
 import AppConfig from '../pages/developer-tools/app-config'
 // #Import
@@ -73,7 +74,8 @@ class Sidebar extends Component {
         open: false,
         dropdown: [
           RequestLogs.asSidebarItem(),
-          AppConfig.asSidebarItem()
+          AppConfig.asSidebarItem(),
+          FormBuilder.asSidebarItem()
         ]
       }, {
         title: 'Restore data',

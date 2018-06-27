@@ -24,6 +24,7 @@ import Groups from './pages/groups/list'
 import GroupDetail from './pages/groups/detail'
 import RequestLogs from './pages/request-logs/list'
 import AppConfig from './pages/developer-tools/app-config'
+import FormBuilder from './pages/devtools/form-builder'
 // #Import
 
 const NoMatch = () => {
@@ -57,6 +58,7 @@ const AppRouter = () => {
 
           {RequestLogs.asRouterItem()}
           {AppConfig.asRouterItem()}
+          {FormBuilder.asRouterItem()}
 
           <div id='route' />
           <Route component={NoMatch} />
