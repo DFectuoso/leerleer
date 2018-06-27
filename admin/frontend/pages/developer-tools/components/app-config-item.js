@@ -139,7 +139,7 @@ class AppConfigItem extends Component {
           disabled={isInputDisabled}
           onChange={(e) => this.handleValueChange(e.currentTarget.value)}
         />
-        <span className='help'>Use coma separeted values</span>
+        <span className='help'>Use comma separeted values</span>
       </div>)
     }
 

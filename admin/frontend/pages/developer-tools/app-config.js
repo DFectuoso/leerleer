@@ -197,7 +197,7 @@ class AppConfig extends PageComponent {
           value={newAppConfig.value}
           onChange={(e) => this.handleInputChange('value', e.currentTarget.value)}
         />
-        <span className='help'>Use coma separeted values</span>
+        <span className='help'>Use comma separated values</span>
       </div>)
     }
 
@@ -218,7 +218,6 @@ class AppConfig extends PageComponent {
                       <option value='string'>String</option>
                       <option value='array'>Array</option>
                       <option value='object'>Object</option>
-                      <option >Sales</option>
                     </select>
                   </div>
                 </div>
