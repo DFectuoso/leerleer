@@ -327,6 +327,9 @@ class RequestLogs extends PageComponent {
       <div className='columns c-flex-1 is-marginless'>
         <div className='column is-paddingless'>
           <div className='section'>
+            <div className='columns'>
+              {this.getBreadcrumbs()}
+            </div>
             <div className='header columns'>
               <div className='column is-narrow'>
                 <div className='field has-addons is-padding-bottom-small'>
@@ -407,7 +410,11 @@ RequestLogs.config({
   icon: 'history',
   exact: true,
   validate: loggedIn,
-  component: RequestLogs
+  breadcrumbs: [
+    {label: 'Dashboard', path: '/'},
+    {label: 'Developer tools'},
+    {label: 'Request logs'}
+  ]
 })
 
 export default RequestLogs

@@ -23,7 +23,7 @@ import RoleDetail from './pages/roles/detail'
 import Groups from './pages/groups/list'
 import GroupDetail from './pages/groups/detail'
 import RequestLogs from './pages/request-logs/list'
-import Reports from './pages/reports/users'
+import AppConfig from './pages/developer-tools/app-config'
 // #Import
 
 const NoMatch = () => {
@@ -56,7 +56,7 @@ const AppRouter = () => {
           {GroupDetail.asRouterItem()}
 
           {RequestLogs.asRouterItem()}
-          {Reports.asRouterItem()}
+          {AppConfig.asRouterItem()}
 
           <div id='route' />
           <Route component={NoMatch} />
