@@ -36,6 +36,11 @@ class AdminLayout extends Component {
       this.setState({user})
     })
 
+    const config = await api.get('/app-config')
+    tree.set('config', config)
+
+    tree.commit()
+
     var me
     if (tree.get('jwt')) {
       try {
@@ -65,6 +70,7 @@ class AdminLayout extends Component {
 
       tree.set('user', me.user)
       tree.set('loggedIn', me.loggedIn)
+
       tree.commit()
     }
 
