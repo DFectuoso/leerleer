@@ -12,6 +12,7 @@ import Groups from '../pages/groups/list'
 
 import RequestLogs from '../pages/request-logs/list'
 import AppConfig from '../pages/developer-tools/app-config'
+// #Import
 
 class Sidebar extends Component {
   constructor (props) {
@@ -51,12 +52,13 @@ class Sidebar extends Component {
         open: false,
         dropdown: [
           Users.asSidebarItem(),
-          DeletedUsers.asSidebarItem(),
           Organizations.asSidebarItem(),
           Roles.asSidebarItem(),
           Groups.asSidebarItem()
         ]
-      }, {
+      },
+      // #Modules
+      {
         title: 'Load Data',
         icon: 'file-o',
         to: '/import',
@@ -72,6 +74,14 @@ class Sidebar extends Component {
         dropdown: [
           RequestLogs.asSidebarItem(),
           AppConfig.asSidebarItem()
+        ]
+      }, {
+        title: 'Restore data',
+        icon: 'trash-o',
+        to: '/restore',
+        open: false,
+        dropdown: [
+          DeletedUsers.asSidebarItem()// #Restore
         ]
       }
     ]
