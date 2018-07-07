@@ -60,7 +60,7 @@ class {{ name | capitalize }}Detail extends PageComponent {
   }
 
   render () {
-    const { {{ name | lower }}, loaded} = this.state
+    const { {{ name | lower }}, loaded } = this.state
 
     if (!loaded) {
       return <Loader />

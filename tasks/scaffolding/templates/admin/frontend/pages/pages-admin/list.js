@@ -27,12 +27,12 @@ class {{ name | capitalize }}List extends ListPageComponent {
       {% endfor -%}
       {
         'title': 'Created',
-        'property': 'dateCreated',
+        'property': 'createdAt',
         'default': 'N/A',
         'sortable': true,
         formatter: (row) => {
           return (
-            moment.utc(row.dateCreated).local().format('DD/MM/YYYY hh:mm a')
+            moment.utc(row.createdAt).local().format('DD/MM/YYYY hh:mm a')
           )
         }
       },

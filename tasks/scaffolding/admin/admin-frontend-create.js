@@ -34,12 +34,12 @@ const task = new Task(async function (argv) {
   const templatePath = path.join('./tasks/scaffolding/templates/admin/frontend/pages/pages-admin/components/create-button.js')
   const dirPath = path.join('./admin/frontend/pages/' + modelSchema.name + 's/components/')
   const filePath = dirPath + 'create-button.js'
-  const fileApi = await scaffolding.createFileFromTemplate(dirPath, filePath, templatePath, modelSchema)
+  await scaffolding.createFileFromTemplate(dirPath, filePath, templatePath, modelSchema)
 
   const templatePath2 = path.join('./tasks/scaffolding/templates/admin/frontend/pages/pages-admin/components/form.js')
-  const dirPath2 = path.join('./admin/frontend/<p></p>ages/' + modelSchema.name + 's/components/')
+  const dirPath2 = path.join('./admin/frontend/pages/' + modelSchema.name + 's/components/')
   const filePath2 = dirPath + 'form.js'
-  const fileApi2 = await scaffolding.createFileFromTemplate(dirPath2, filePath2, templatePath2, modelSchema)
+  await scaffolding.createFileFromTemplate(dirPath2, filePath2, templatePath2, modelSchema)
 
   return true
 }, 500)
