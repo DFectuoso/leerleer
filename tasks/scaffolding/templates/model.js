@@ -26,8 +26,25 @@ const {{ name | lower }}Schema = new Schema({
     {% for item in fields -%}
       {{- item.name }}: this.{{ item.name }},
     {%- endfor %}
-    dateCreated: this.dateCreated
+    createdAt: this.createdAt
   }
 }
+
+{{ name | lower }}Schema.methods.toPublic = function () {
+  return {
+    uuid: this.uuid,
+    {% for item in fields -%}
+      {{- item.name }}: this.{{ item.name }},
+    {%- endfor %}
+    createdAt: this.createdAt
+  }
+}
+
+{{ name | lower }}Schema.plugin(dataTables, {
+  formatters: {
+    toAdmin: (item) => item.toAdmin(),
+    toPublic: (item) => item.toPublic()
+  }
+})
 
 module.exports = mongoose.model('{{ name | capitalize }}', {{ name | lower }}Schema)
