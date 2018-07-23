@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { MarbleForm } from './'
+import MarbleForm from '~base/components/marble-form'
 import FontAwesome from 'react-fontawesome'
 import BaseModal from '~base/components/base-modal'
 import {
@@ -9,38 +9,130 @@ import {
   arrayMove
 } from 'react-sortable-hoc'
 
+const baseSchema = {
+  widget: {
+    label: 'Widget',
+    type: 'string',
+    options: [
+      'TextWidget',
+      'TextareaWidget',
+      'EmailWidget',
+      'NumberWidget',
+      'SelectWidget',
+      'MultipleSelectWidget',
+      'DateWidget',
+      'DateTimeWidget',
+      'CheckboxWidget'
+    ],
+    placeholder: 'Select a widget',
+    widget: 'SelectWidget',
+    required: true
+  },
+  name: {
+    label: 'name',
+    type: 'string',
+    placeholder: 'Name',
+    widget: 'TextWidget',
+    required: true
+  },
+  label: {
+    label: 'label',
+    type: 'string',
+    placeholder: 'Add name',
+    widget: 'TextWidget',
+    required: true
+  },
+  placeholder: {
+    label: 'Placeholder',
+    type: 'string',
+    widget: 'TextWidget'
+  },
+  default: {
+    label: 'default',
+    type: 'string'
+  },
+  required: {
+    label: 'Required?',
+    type: 'boolean',
+    widget: 'CheckboxWidget'
+  },
+  disabled: {
+    label: 'Disabled?',
+    type: 'boolean',
+    widget: 'CheckboxWidget'
+  }
+}
+
 const WidgetSchemas = {
-  NumberWidget: {
-    type: {
-      name: 'Type',
+  TextareaWidget: {
+    default: {
+      label: 'default',
       type: 'string',
-      widget: 'SelectWidget',
-      options: ['number'],
-      placeholder: 'Select type',
-      required: true
+      widget: 'TextareaWidget'
+    }
+  },
+  EmailWidget: {
+    default: {
+      label: 'default',
+      type: 'string',
+      widget: 'EmailWidget'
+    }
+  },
+  NumberWidget: {
+    default: {
+      label: 'default',
+      type: 'number',
+      widget: 'NumberWidget'
+    },
+    type: {
+      name: 'type',
+      default: 'number',
+      widget: 'HiddenWidget'
     },
     minimum: {
-      name: 'Minimum',
+      name: 'minimum',
+      label: 'Minimum',
       type: 'number',
       placeholder: 'Select minimum',
       widget: 'NumberWidget'
     },
     maximum: {
-      name: 'Maximum',
+      name: 'maximum',
+      label: 'Maximum',
       type: 'number',
       placeholder: 'Select maximum',
+      widget: 'NumberWidget'
+    },
+    step: {
+      name: 'step',
+      label: 'Step',
+      type: 'number',
+      placeholder: 'Select step size',
       widget: 'NumberWidget'
     }
   },
   SelectWidget: {
+    default: {
+      label: 'default',
+      type: 'string'
+    },
+    allowEmpty: {
+      label: 'allowEmpty?',
+      type: 'boolean',
+      widget: 'CheckboxWidget'
+    },
     options: {
-      name: 'Options',
+      name: 'options',
       placeholder: 'Select options',
       widget: 'MultipleSelectWidget',
       addable: true
     }
   },
   MultipleSelectWidget: {
+    default: {
+      label: 'default',
+      type: 'string'
+    },
     options: {
       name: 'Options',
       placeholder: 'Select options',
@@ -48,21 +140,44 @@ const WidgetSchemas = {
       addable: true
     },
     addable: {
-      name: 'Addable?',
+      label: 'Addable?',
+      widget: 'CheckboxWidget'
+    }
+  },
+  DateWidget: {
+    default: {
+      label: 'default',
+      type: 'date',
+      widget: 'DateWidget'
+    }
+  },
+  DateTimeWidget: {
+    default: {
+      label: 'default',
+      type: 'date',
+      widget: 'DateTimeWidget'
+    }
+  },
+  CheckboxWidget: {
+    default: {
+      label: 'default',
+      type: 'boolean',
       widget: 'CheckboxWidget'
     }
   }
 }
 
 const SortableItem = SortableElement(props => {
-  const DragHandle = SortableHandle(() => <div className='card-header-title is-flex'>
-    <div className='is-fullwidth'>
-      {props.item.name} {props.item.required ? '*' : ''}
-    </div>
-    <div className='is-fullwidth has-text-weight-normal has-text-right'>
-      <small>{props.item.widget}</small>
-    </div>
-  </div>)
+  const DragHandle = SortableHandle(() => {
+    return (<div className='card-header-title is-flex'>
+      <div className='is-fullwidth'>
+        {props.item.name} {props.item.required ? '*' : ''}
+      </div>
+      <div className='is-fullwidth has-text-weight-normal has-text-right'>
+        <small>{props.item.widget}</small>
+      </div>
+    </div>)
+  })
 
   return <div className='card'>
     <div className='card-header'>
@@ -109,6 +224,7 @@ class FormWidget extends Component {
 
   componentWillReceiveProps (props) {
     const initialData = 'initialData' in props ? props.initialData : this.props.initialData
+
     this.setState({
       initialData,
       currentWidget: props.currentWidget,
@@ -117,10 +233,10 @@ class FormWidget extends Component {
   }
 
   onChange (data, index) {
-    this.setState({
-      currentWidget: index,
-      widgetSchema: WidgetSchemas[data.widget] || {}
-    })
+    const state = {formData: data}
+
+    state.widgetSchema = WidgetSchemas[data.widget] || {}
+    this.setState(state)
   }
 
   onSubmit (data, index) {
@@ -135,58 +251,7 @@ class FormWidget extends Component {
   }
 
   render () {
-    const schema = {
-      widget: {
-        name: 'Widget',
-        type: 'string',
-        options: [
-          'TextWidget',
-          'EmailWidget',
-          'NumberWidget',
-          'TextareaWidget',
-          'SelectWidget',
-          'MultipleSelectWidget',
-          'DateWidget',
-          'DateTimeWidget',
-          'CheckboxWidget'
-        ],
-        placeholder: 'Select widget',
-        widget: 'SelectWidget',
-        required: true
-      },
-      id: {
-        name: 'ID',
-        type: 'string',
-        placeholder: 'Add ID',
-        widget: 'TextWidget',
-        required: true
-      },
-      name: {
-        name: 'Name',
-        type: 'string',
-        placeholder: 'Add name',
-        widget: 'TextWidget',
-        required: true
-      },
-      type: {
-        name: 'Type',
-        type: 'string',
-        widget: 'SelectWidget',
-        options: ['string', 'number', 'boolean'],
-        placeholder: 'Add type',
-        required: true
-      },
-      placeholder: {
-        name: 'Placeholder',
-        type: 'string',
-        widget: 'TextWidget'
-      },
-      required: {
-        name: 'Required?',
-        type: 'boolean',
-        widget: 'CheckboxWidget'
-      }
-    }
+    const schema = {...baseSchema}
 
     Object.keys(this.state.widgetSchema).map(key => {
       schema[key] = this.state.widgetSchema[key]
@@ -195,7 +260,8 @@ class FormWidget extends Component {
     return <MarbleForm
       schema={schema}
       initialData={this.state.initialData}
-      onChange={data => this.onChange(data, this.state.currentWidget)}
+      formData={this.state.formData}
+      onChange={data => this.onChange(data)}
       onSubmit={data => this.onSubmit(data, this.state.currentWidget)}
       successMessage=''
       errorMessage=''
@@ -214,8 +280,12 @@ class FormBuilder extends Component {
     }
 
     this.state.widgets = Object.keys(initialSchema).map(key => {
-      initialSchema[key].id = key
-      return initialSchema[key]
+      const item = initialSchema[key]
+      item.id = key
+      item.name = item.name || key
+      item.widget = item.widget || 'TextWidget'
+
+      return item
     })
   }
 
@@ -265,8 +335,8 @@ class FormBuilder extends Component {
     if (this.props.onChange) {
       const { widgets } = this.state
       const schema = {}
-      widgets.map(widget => {
-        schema[widget.id] = widget
+      widgets.forEach(widget => {
+        schema[widget.name] = widget
       })
       this.props.onChange(schema)
     }
@@ -276,14 +346,16 @@ class FormBuilder extends Component {
     const { widgets, currentWidget } = this.state
 
     let initialData = {}
-
+    let formData = {}
     if (currentWidget > -1) {
       initialData = widgets[currentWidget]
+      formData = widgets[currentWidget]
     }
 
     const currentWidgetForm = <FormWidget
       currentWidget={currentWidget}
       initialData={initialData}
+      formData={formData}
       onSubmit={(data, index) => this.onSubmitWidget(data, index)}
     />
 

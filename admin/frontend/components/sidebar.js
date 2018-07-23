@@ -10,9 +10,9 @@ import Organizations from '../pages/organizations/list'
 import Roles from '../pages/roles/list'
 import Groups from '../pages/groups/list'
 
-import FormBuilder from '../pages/devtools/form-builder'
-import RequestLogs from '../pages/request-logs/list'
+import RequestLogs from '../pages/developer-tools/request-logs'
 import AppConfig from '../pages/developer-tools/app-config'
+import FormBuilder from '../pages/developer-tools/form-builder'
 // #Import
 
 class Sidebar extends Component {

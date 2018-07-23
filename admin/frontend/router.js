@@ -22,9 +22,9 @@ import Roles from './pages/roles/list'
 import RoleDetail from './pages/roles/detail'
 import Groups from './pages/groups/list'
 import GroupDetail from './pages/groups/detail'
-import RequestLogs from './pages/request-logs/list'
+import RequestLogs from './pages/developer-tools/request-logs'
 import AppConfig from './pages/developer-tools/app-config'
-import FormBuilder from './pages/devtools/form-builder'
+import FormBuilder from './pages/developer-tools/form-builder'
 // #Import
 
 const NoMatch = () => {
