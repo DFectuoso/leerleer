@@ -153,7 +153,10 @@ userSchema.statics.register = async function (options) {
 userSchema.statics.validateInvite = async function (email, tokenUuid) {
   const UserToken = mongoose.model('UserToken')
 
-  const token = await UserToken.findOne({uuid: tokenUuid}).populate('user')
+  const token = await UserToken.findOne({
+    uuid: tokenUuid,
+    type: 'invite-email'
+  }).populate('user')
   const userEmail = email.toLowerCase()
 
   assert(token, 401, 'Invalid token! You should contact the administrator of this page.')
@@ -165,7 +168,10 @@ userSchema.statics.validateInvite = async function (email, tokenUuid) {
 userSchema.statics.validateResetPassword = async function (email, tokenUuid) {
   const UserToken = mongoose.model('UserToken')
 
-  const token = await UserToken.findOne({uuid: tokenUuid}).populate('user')
+  const token = await UserToken.findOne({
+    uuid: tokenUuid,
+    type: 'reset-email'
+  }).populate('user')
   const userEmail = email.toLowerCase()
 
   assert(token, 401, 'Invalid token! You should contact the administrator of this page.')
