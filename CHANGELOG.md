@@ -11,6 +11,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Fixed
 - Fix list formatters on users, groups, roles and organizations
+- Reset password and invite users now use User tokens
 
 ## [0.6.1] - 2018-05-06
 
