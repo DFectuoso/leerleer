@@ -215,8 +215,11 @@ class FormWidget extends Component {
   constructor (props) {
     super(props)
     const initialData = props.initialData || {}
+    const formData = props.formData || {}
+
     this.state = {
       initialData,
+      formData,
       currentWidget: props.currentWidget,
       widgetSchema: WidgetSchemas[initialData.widget] || {}
     }
@@ -224,9 +227,11 @@ class FormWidget extends Component {
 
   componentWillReceiveProps (props) {
     const initialData = 'initialData' in props ? props.initialData : this.props.initialData
+    const formData = 'formData' in props ? props.formData : this.props.FormBuilder
 
     this.setState({
       initialData,
+      formData,
       currentWidget: props.currentWidget,
       widgetSchema: WidgetSchemas[initialData.widget] || {}
     })
