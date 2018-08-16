@@ -244,8 +244,8 @@ class FormWidget extends Component {
     this.setState(state)
   }
 
-  onSubmit (data, index) {
-    this.props.onSubmit(data, index)
+  async onSubmit (data, index) {
+    await this.props.onSubmit(data, index)
     this.clearState()
   }
 
