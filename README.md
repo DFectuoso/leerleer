@@ -25,3 +25,33 @@ Mostrar ordenados eso en el otro lado
 En tu perfil puedes elegir si quieres o no recibir notificaciones, si no, siempre tiene una barra arriba mienstras estas logeado?
 
 = Hacer una portada donde puedas ver los top 3 de cada cosa y entrar a cada cosa.
+
+Modelos
+
+-> Book
+author
+title
+amazonUrl
+audibleUrl
+
+-> ScheduledReviews
+book
+date
+
+-> Review
+book
+link
+
+-> Recommended
+book
+user
+one-liner
+
+-> RecommendedVote
+Recommended
+user
+
+-> RecommendedComment
+user
+recommended
+text

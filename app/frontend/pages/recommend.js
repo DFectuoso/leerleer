@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import Page from '~base/page'
 
 export default Page({
-  path: '/about',
+  path: '/recomendar',
   title: 'About',
   exact: true,
   component: class extends Component {
@@ -14,7 +14,7 @@ export default Page({
     render () {
       return (
         <div className='About'>
-          <h2>About</h2>
+          <h2>Aqui puedes recomendar alguno</h2>
         </div>
       )
     }

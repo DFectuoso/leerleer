@@ -147,8 +147,14 @@ class NavBar extends Component {
         </div>
         <div className={navbarMenuClassName}>
           <div className='navbar-start'>
-            <NavLink className='navbar-item' to='/about'>
-              About
+            <NavLink className='navbar-item' to='/pasados'>
+              Pasados
+            </NavLink>
+            <NavLink className='navbar-item' to='/siguientes'>
+              Siguientes
+            </NavLink>
+            <NavLink className='navbar-item' to='/recomendar'>
+              Recomendar
             </NavLink>
           </div>
           {navButtons}

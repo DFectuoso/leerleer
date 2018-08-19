@@ -17,8 +17,8 @@ export default Page({
           <div className='container'>
             <div className='columns is-vcentered'>
               <div className='column is-4'>
-                <p className='title'>Home</p>
-                <p className='subtitle'>Welcome to marble seeds!</p>
+                <p className='title'>LeerLeer</p>
+                <p className='subtitle'>Bienvenido a Leer Leer, aqui vas a poder ver los libros que ya revisamos, los que vamos a revisar y sugerir algunos!</p>
               </div>
 
               <div className='column is-8'>

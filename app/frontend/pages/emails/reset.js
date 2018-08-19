@@ -121,7 +121,7 @@ class EmailResetLanding extends Component {
     this.setState({...this.state, apiCallMessage: 'message is-success'})
 
     setTimeout(() => {
-      this.props.history.push('/app', {})
+      this.props.history.push('/', {})
     }, 4000)
   }
 

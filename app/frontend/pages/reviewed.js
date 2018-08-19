@@ -1,0 +1,22 @@
+import React, { Component } from 'react'
+import Page from '~base/page'
+
+export default Page({
+  path: '/pasados',
+  title: 'About',
+  exact: true,
+  component: class extends Component {
+    constructor (props) {
+      super(props)
+      this.state = {}
+    }
+
+    render () {
+      return (
+        <div className='About'>
+          <h2>Aqui puedes ver los que ya hicimos</h2>
+        </div>
+      )
+    }
+  }
+})
