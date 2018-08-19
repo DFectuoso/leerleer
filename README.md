@@ -1,18 +1,17 @@
-# Marble Seeds
+# LeerLeer
 
-Marble seeds it's a mixture of Koa, React and Node that allows you to create fast web-enabled applications. Out of the box, you get 3 applications, an **API server**, a **React client** and a **React Administrator**.
+Este es el repo de leerleer.com, que contine todo lo que hacemos para hacer reviews de libros y ponerlos en youtube.
 
-Marble Seeds also comes with a facility of scaffoldings, task, queues and more!
+Esta basado en Marble Seeds
 
-As a dependency you have to have up and running Mongo, Redis, Node and NPM.
 
-To be able to use the scaffolding, you also need to have standard, which you can install with:
+### Set up
+
+Para poder usar los scaffoldings, es necesario tener:
 
 ```
 npm install standard --global
 ```
-
-### Set up
 
 After you clone the repository, you need to install al the NPM libraries
 
