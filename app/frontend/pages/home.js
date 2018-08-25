@@ -20,7 +20,8 @@ export default Page({
               <h2 className='subtitle'>Leemos libros, comentamos lo que aprendimos en video.</h2>
               <h2 className='subtitle'>Anteriores: <a href='https://www.youtube.com/watch?v=Tl61g4jid40'>Never split the difference</a>, <a href='https://www.youtube.com/watch?v=HM4qQN36WJY'>The undoing project</a>, <a href='https://www.youtube.com/watch?v=8bMG7EiziCo'>Bad Blood</a></h2>
               <h2 className='subtitle'>Siguiente:. Think fast and slow, Septiembre 6, 2018. 5:00 pm PST -6</h2>
-
+              <h2 className='subtitle'>Sigue el <a href="https://www.youtube.com/channel/UCdK_-3ZdjR4t_hp7bh1xbDA?view_as=subscriber">canal de youtube</a></h2>
+        
               
             </div>
           </div>
