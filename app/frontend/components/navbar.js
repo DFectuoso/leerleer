@@ -132,6 +132,7 @@ class NavBar extends Component {
       </div>)
     }
 
+    /*
     return (
       <nav className='navbar'>
         <div className='navbar-brand'>
@@ -160,6 +161,11 @@ class NavBar extends Component {
           {navButtons}
         </div>
       </nav>
+    )
+    */
+
+    return (
+      <div/>
     )
   }
 }
